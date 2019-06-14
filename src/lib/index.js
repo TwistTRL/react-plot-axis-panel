@@ -1,3 +1,4 @@
 import CollapsibleYPanel from "./CollapsibleYPanel";
+import LinearSpaceYPanel from "./LinearSpaceYPanel";
 
-export default CollapsibleYPanel;
+export {LinearSpaceYPanel,CollapsibleYPanel};

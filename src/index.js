@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import {HashRouter as Router, Link, Route} from "react-router-dom";
 
-import CollapsibleYPanel from "./lib";
+import {LinearSpaceYPanel,CollapsibleYPanel} from "./lib";
 
 // CSS
 import "./index.css";
@@ -47,7 +47,7 @@ class CollapsibleYPanelBundle extends Component{
           <legend>Props</legend>
           <div>
             cateogoryStructure
-            {JSON.stringify(this.categorytStructure,null,' ')}
+            {JSON.stringify(this.categoryStructure,null,' ')}
           </div>
           <div>
             useLeaves
@@ -90,7 +90,89 @@ class CollapsibleYPanelBundle extends Component{
   }
 }
 
+class LinearSpaceYPanelBundle extends Component {
+  constructor(props){
+    super(props);
+    this.categoryStructure = [{ name:'a',
+                                start:0,
+                                end:15,
+                                children:[{ name:'a1',
+                                            start:0,
+                                            end:5},
+                                          { name:'a2',
+                                            start:5,
+                                            end:15}]
+                                },
+                              { name:'b',
+                                start:15,
+                                end:80,
+                                children:[{ name:'b1',
+                                            start:15,
+                                            end:35},
+                                          { name:'b2',
+                                            start:35,
+                                            end:80}]
+                                }
+                              ];
+    this.state ={ minY: 0,
+                  maxY: 100,
+                  width: 150,
+                  height: 40,
+                  };
+  }
 
+  render(){
+    let {minY,maxY,width,height} = this.state;
+    return (
+      <>
+        <fieldset>
+          <legend>Props</legend>
+          <div>
+            cateogoryStructure
+            {JSON.stringify(this.categoryStructure,null,' ')}
+          </div>
+          <div>
+            minY
+            <input  type="range" min={0} max={maxY} value={minY}
+                    onChange={(ev)=>this.setState({minY:Number.parseInt(ev.target.value)})}
+                    />
+            {minY}
+          </div>
+          <div>
+            maxY
+            <input  type="range" min={minY} max={120} value={maxY}
+                    onChange={(ev)=>this.setState({maxY:Number.parseInt(ev.target.value)})}
+                    />
+            {maxY}
+          </div>
+          <div>
+            width
+            <input  type="range" min={50} max={200} value={width}
+                    onChange={(ev)=>this.setState({width:Number.parseInt(ev.target.value)})}
+                    />
+            {width}
+          </div>
+          <div>
+            height
+            <input  type="range" min={0} max={500} value={height}
+                    onChange={(ev)=>this.setState({height:Number.parseInt(ev.target.value)})}
+                    />
+            {height}
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Result</legend>
+          <LinearSpaceYPanel  categoryStructure={this.categoryStructure}
+                              minY={minY}
+                              maxY={maxY}
+                              width={width}
+                              height={height}
+                              />
+        </fieldset>
+      </>
+    );
+  }
+}
 
 class App extends Component{
   render(){
@@ -98,8 +180,10 @@ class App extends Component{
       <Router>
         <nav className="app">
           <Link to="/CollapsibleYPanel">CollapsibleYPanel</Link>
+          <Link to="/LinearSpaceYPanel">LinearSpaceYPanel</Link>
         </nav>
         <Route path="/CollapsibleYPanel" exact component={CollapsibleYPanelBundle}/>
+        <Route path="/LinearSpaceYPanel" exact component={LinearSpaceYPanelBundle}/>
       </Router>
     );
   }
