@@ -47,7 +47,9 @@ class CollapsibleYPanelBundle extends Component{
           <legend>Props</legend>
           <div>
             cateogoryStructure
-            {JSON.stringify(this.categoryStructure,null,' ')}
+            <pre>
+              {JSON.stringify(this.categoryStructure,null,' ')}
+            </pre>
           </div>
           <div>
             useLeaves
@@ -129,7 +131,9 @@ class LinearSpaceYPanelBundle extends Component {
           <legend>Props</legend>
           <div>
             cateogoryStructure
-            {JSON.stringify(this.categoryStructure,null,' ')}
+            <pre>
+              {JSON.stringify(this.categoryStructure,null,' ')}
+            </pre>
           </div>
           <div>
             minY
