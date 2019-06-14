@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/react-plot-axis-panel/static/css/main.9d313dd0.chunk.css",
+    "main.js": "/react-plot-axis-panel/static/js/main.25e48cd0.chunk.js",
+    "main.js.map": "/react-plot-axis-panel/static/js/main.25e48cd0.chunk.js.map",
+    "runtime~main.js": "/react-plot-axis-panel/static/js/runtime~main.63acfe64.js",
+    "runtime~main.js.map": "/react-plot-axis-panel/static/js/runtime~main.63acfe64.js.map",
+    "static/js/2.24a432ae.chunk.js": "/react-plot-axis-panel/static/js/2.24a432ae.chunk.js",
+    "static/js/2.24a432ae.chunk.js.map": "/react-plot-axis-panel/static/js/2.24a432ae.chunk.js.map",
+    "index.html": "/react-plot-axis-panel/index.html",
+    "precache-manifest.e1cbf1a1b45f6ada35a751788e00caca.js": "/react-plot-axis-panel/precache-manifest.e1cbf1a1b45f6ada35a751788e00caca.js",
+    "service-worker.js": "/react-plot-axis-panel/service-worker.js",
+    "static/css/main.9d313dd0.chunk.css.map": "/react-plot-axis-panel/static/css/main.9d313dd0.chunk.css.map"
+  }
+}
