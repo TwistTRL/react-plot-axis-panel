@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "be5baa2d859dc7aff84805bdd7bdc9cf",
+    "revision": "f4a264a1fe63efe1e1a8702f0722c20b",
     "url": "/react-plot-axis-panel/index.html"
   },
   {
-    "revision": "4a97c0a4e400bb30274c",
+    "revision": "a10b04c5fd93cfa5749a",
     "url": "/react-plot-axis-panel/static/css/main.9d313dd0.chunk.css"
   },
   {
-    "revision": "4cf0b8e9d1392a3f00d4",
-    "url": "/react-plot-axis-panel/static/js/2.24a432ae.chunk.js"
+    "revision": "e1df7bd1e861f2787c0b",
+    "url": "/react-plot-axis-panel/static/js/2.087d7855.chunk.js"
   },
   {
-    "revision": "4a97c0a4e400bb30274c",
-    "url": "/react-plot-axis-panel/static/js/main.25e48cd0.chunk.js"
+    "revision": "a10b04c5fd93cfa5749a",
+    "url": "/react-plot-axis-panel/static/js/main.78aa8ff2.chunk.js"
   },
   {
     "revision": "1f466664eb1f7130057a",
