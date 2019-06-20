@@ -9,8 +9,6 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
-var _plotUtils = require("plot-utils");
-
 var _PrimaryCategoryObject = _interopRequireDefault(require("./PrimaryCategoryObject"));
 
 var _SecondaryCategoryObject = _interopRequireDefault(require("./SecondaryCategoryObject"));
@@ -20,10 +18,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -41,24 +35,22 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-var SECONDARY_COLOR_CYCLE = ["#feefce", "#fffbe7"];
-
-var LinearSpaceYPanel =
+var StaticYPanel =
 /*#__PURE__*/
 function (_PureComponent) {
-  _inherits(LinearSpaceYPanel, _PureComponent);
+  _inherits(StaticYPanel, _PureComponent);
 
-  function LinearSpaceYPanel(props) {
+  function StaticYPanel(props) {
     var _this;
 
-    _classCallCheck(this, LinearSpaceYPanel);
+    _classCallCheck(this, StaticYPanel);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(LinearSpaceYPanel).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(StaticYPanel).call(this, props));
     _this.ref = _react.default.createRef();
     return _this;
   }
 
-  _createClass(LinearSpaceYPanel, [{
+  _createClass(StaticYPanel, [{
     key: "render",
     value: function render() {
       var _this$props = this.props,
@@ -90,8 +82,7 @@ function (_PureComponent) {
     value: function draw() {
       var _this$props2 = this.props,
           categoryStructure = _this$props2.categoryStructure,
-          minY = _this$props2.minY,
-          maxY = _this$props2.maxY,
+          rowHeight = _this$props2.rowHeight,
           width = _this$props2.width,
           height = _this$props2.height;
       this.draw_memo = this.draw_memo || {};
@@ -101,22 +92,15 @@ function (_PureComponent) {
         memo.categoryStructure = categoryStructure;
         memo.categoryStructureClone = [];
 
-        for (var i = 0, rowNum = 0; i < categoryStructure.length; i++) {
+        for (var i = 0; i < categoryStructure.length; i++) {
           var p = categoryStructure[i];
           var newP = new _PrimaryCategoryObject.default(p);
-          newP.start = p.start;
-          newP.end = p.end;
           newP.children = [];
 
           for (var j = 0; j < p.children.length; j++) {
             var s = p.children[j];
-            var newS = new _SecondaryCategoryObject.default(_objectSpread({}, s, {
-              backgroundColor: SECONDARY_COLOR_CYCLE[rowNum % SECONDARY_COLOR_CYCLE.length]
-            }));
-            newS.start = s.start;
-            newS.end = s.end;
+            var newS = new _SecondaryCategoryObject.default(s);
             newP.children.push(newS);
-            rowNum += 1;
           }
 
           memo.categoryStructureClone.push(newP);
@@ -127,83 +111,52 @@ function (_PureComponent) {
       var canvas = this.ref.current;
       var ctx = canvas.getContext("2d");
       ctx.clearRect(0, 0, width, height);
-      var _iteratorNormalCompletion = true;
-      var _didIteratorError = false;
-      var _iteratorError = undefined;
 
-      try {
-        for (var _iterator = memo.categoryStructureClone[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-          var _p = _step.value;
-          var _iteratorNormalCompletion2 = true;
-          var _didIteratorError2 = false;
-          var _iteratorError2 = undefined;
+      for (var _i = 0, rowNum = 0; _i < memo.categoryStructureClone.length; _i++) {
+        var _p = memo.categoryStructureClone[_i];
+        var rowStart = rowNum;
+        var _iteratorNormalCompletion = true;
+        var _didIteratorError = false;
+        var _iteratorError = undefined;
 
+        try {
+          for (var _iterator = _p.children[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+            var _s = _step.value;
+
+            _s.draw(ctx, width, height, rowNum * rowHeight, (rowNum + 1) * rowHeight);
+
+            rowNum += 1;
+          }
+        } catch (err) {
+          _didIteratorError = true;
+          _iteratorError = err;
+        } finally {
           try {
-            for (var _iterator2 = _p.children[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-              var _s = _step2.value;
-
-              if (_s.end < minY || _s.start > maxY) {
-                continue;
-              } else {
-                var _startDomX = Math.round((0, _plotUtils.toDomYCoord_Linear)(height, minY, maxY, _s.end));
-
-                var _endDomX = Math.round((0, _plotUtils.toDomYCoord_Linear)(height, minY, maxY, _s.start));
-
-                _s.draw(ctx, width, height, _startDomX, _endDomX);
-              }
-            } //
-
-          } catch (err) {
-            _didIteratorError2 = true;
-            _iteratorError2 = err;
+            if (!_iteratorNormalCompletion && _iterator.return != null) {
+              _iterator.return();
+            }
           } finally {
-            try {
-              if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
-                _iterator2.return();
-              }
-            } finally {
-              if (_didIteratorError2) {
-                throw _iteratorError2;
-              }
+            if (_didIteratorError) {
+              throw _iteratorError;
             }
           }
-
-          if (_p.end < minY || _p.start > maxY) {
-            continue;
-          } else {
-            var startDomX = Math.round((0, _plotUtils.toDomYCoord_Linear)(height, minY, maxY, _p.end));
-            var endDomX = Math.round((0, _plotUtils.toDomYCoord_Linear)(height, minY, maxY, _p.start));
-            console.log(minY, maxY, _p.end, startDomX);
-
-            _p.draw(ctx, width, height, startDomX, endDomX);
-          }
         }
-      } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion && _iterator.return != null) {
-            _iterator.return();
-          }
-        } finally {
-          if (_didIteratorError) {
-            throw _iteratorError;
-          }
+
+        if (rowNum !== rowStart) {
+          _p.draw(ctx, width, height, rowStart * rowHeight, rowNum * rowHeight);
         }
       }
     }
   }]);
 
-  return LinearSpaceYPanel;
+  return StaticYPanel;
 }(_react.PureComponent);
 
-LinearSpaceYPanel.propTypes = {
+StaticYPanel.propTypes = {
   categoryStructure: _propTypes.default.array.isRequired,
-  minY: _propTypes.default.number.isRequired,
-  maxY: _propTypes.default.number.isRequired,
+  rowHeight: _propTypes.default.number.isRequired,
   width: _propTypes.default.number.isRequired,
   height: _propTypes.default.number.isRequired
 };
-var _default = LinearSpaceYPanel;
+var _default = StaticYPanel;
 exports.default = _default;
