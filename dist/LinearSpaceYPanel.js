@@ -173,7 +173,6 @@ function (_PureComponent) {
           } else {
             var startDomX = Math.round((0, _plotUtils.toDomYCoord_Linear)(height, minY, maxY, _p.end));
             var endDomX = Math.round((0, _plotUtils.toDomYCoord_Linear)(height, minY, maxY, _p.start));
-            console.log(minY, maxY, _p.end, startDomX);
 
             _p.draw(ctx, width, height, startDomX, endDomX);
           }

@@ -77,7 +77,6 @@ class LinearSpaceYPanel extends PureComponent{
       else {
         let startDomX = Math.round( toDomYCoord_Linear(height,minY,maxY,p.end) );
         let endDomX = Math.round( toDomYCoord_Linear(height,minY,maxY,p.start) );
-        console.log(minY,maxY,p.end,startDomX);
         p.draw(ctx,width,height,startDomX,endDomX);
       }
     }

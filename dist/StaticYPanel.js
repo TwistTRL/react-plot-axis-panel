@@ -85,6 +85,7 @@ function (_PureComponent) {
           rowHeight = _this$props2.rowHeight,
           width = _this$props2.width,
           height = _this$props2.height;
+      console.log(this.props);
       this.draw_memo = this.draw_memo || {};
       var memo = this.draw_memo; // Cache categoryStructure change
 
