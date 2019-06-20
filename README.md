@@ -6,6 +6,11 @@ https://twisttrl.github.io/react-plot-axis-panel
 
 ## Examples
 ```
+<StaticYPanel categoryStructure={this.categoryStructure}
+              rowHeight={rowHeight}
+              width={width}
+              height={height}
+              />
 <CollapsibleYPanel  categoryStructure={this.categoryStructure}
                     useLeaves={useLeaves}
                     rowHeight={rowHeight}
