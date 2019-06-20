@@ -41,7 +41,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-var PRIMARY_COLOR_CYCLE = ["#d2b4de", "#aed6f1", "#a9dfbf", "#f9e79f", "#f5cba7"];
 var SECONDARY_COLOR_CYCLE = ["#feefce", "#fffbe7"];
 
 var LinearSpaceYPanel =
@@ -102,11 +101,9 @@ function (_PureComponent) {
         memo.categoryStructure = categoryStructure;
         memo.categoryStructureClone = [];
 
-        for (var i = 0; i < categoryStructure.length; i++) {
+        for (var i = 0, _rowNum = 0; i < categoryStructure.length; i++) {
           var p = categoryStructure[i];
-          var newP = new _PrimaryCategoryObject.default(_objectSpread({}, p, {
-            backgroundColor: PRIMARY_COLOR_CYCLE[i % PRIMARY_COLOR_CYCLE.length]
-          }));
+          var newP = new _PrimaryCategoryObject.default(p);
           newP.start = p.start;
           newP.end = p.end;
           newP.children = [];
@@ -114,11 +111,12 @@ function (_PureComponent) {
           for (var j = 0; j < p.children.length; j++) {
             var s = p.children[j];
             var newS = new _SecondaryCategoryObject.default(_objectSpread({}, s, {
-              backgroundColor: SECONDARY_COLOR_CYCLE[j % SECONDARY_COLOR_CYCLE.length]
+              backgroundColor: SECONDARY_COLOR_CYCLE[_rowNum % SECONDARY_COLOR_CYCLE.length]
             }));
             newS.start = s.start;
             newS.end = s.end;
             newP.children.push(newS);
+            _rowNum += 1;
           }
 
           memo.categoryStructureClone.push(newP);
@@ -129,6 +127,7 @@ function (_PureComponent) {
       var canvas = this.ref.current;
       var ctx = canvas.getContext("2d");
       ctx.clearRect(0, 0, width, height);
+      var rowNum = 0;
       var _iteratorNormalCompletion = true;
       var _didIteratorError = false;
       var _iteratorError = undefined;
@@ -152,6 +151,8 @@ function (_PureComponent) {
                 var _endDomX = Math.round((0, _plotUtils.toDomYCoord_Linear)(height, minY, maxY, _s.start));
 
                 _s.draw(ctx, width, height, _startDomX, _endDomX);
+
+                rowNum += 1;
               }
             } //
 

@@ -3,7 +3,12 @@ import {memoize_one} from "memoize";
 const OFFSETX = 40;
 
 class SecondaryCategoryObject {
-  constructor({name,from,to,backgroundColor}) {
+  /*
+   * Secondary category objects are initialized with name.
+   * They should remain unchanged over their life time.
+   * The backgroundColor may change, hence, the bg color can/need to be supplied before drawing.
+   */
+  constructor({name,backgroundColor}) {
     this._name = name;
     this._backgroundColor = backgroundColor;
   }
@@ -11,7 +16,11 @@ class SecondaryCategoryObject {
   getName(){
     return this._name;
   }
-  
+
+  setBackgroundColor(color){
+    this._backgroundColor = color; 
+  }
+
   _getBitmap = memoize_one(()=>{
     let text = this._name;
     let font = "bold 12px Sans";

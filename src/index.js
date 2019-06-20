@@ -20,11 +20,11 @@ function getRandomElements(array){
 class CollapsibleYPanelBundle extends Component{
   constructor(props){
     super(props);
-    this.categoryStructure = [{ name:'a',
+    this.categoryStructure = [{ name:'a',backgroundColor:"#efdb96",
                                 children:[{name:'a1'},
                                           {name:'a2'}]
                                 },
-                              { name:'b',
+                              { name:'b',backgroundColor:"#cface3",
                                 children:[{name:'b1'},
                                           {name:'b2'}]
                                 }
@@ -95,7 +95,8 @@ class CollapsibleYPanelBundle extends Component{
 class LinearSpaceYPanelBundle extends Component {
   constructor(props){
     super(props);
-    this.categoryStructure = [{ name:'a',
+    this.categoryStructure = [{ name:'',
+                                backgroundColor:"#a8e6e3",
                                 start:0,
                                 end:15,
                                 children:[{ name:'a1',
@@ -105,7 +106,8 @@ class LinearSpaceYPanelBundle extends Component {
                                             start:5,
                                             end:15}]
                                 },
-                              { name:'b',
+                              { name:'',
+                                backgroundColor:"#fb8730",
                                 start:15,
                                 end:80,
                                 children:[{ name:'b1',

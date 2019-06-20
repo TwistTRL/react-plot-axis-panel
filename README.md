@@ -2,7 +2,7 @@
 This repo currently houses two two-level panel components used in Twist interface. `CollapsibleYPanel` used in medication plot and `LinearSpaceYPanel` used in respiratory score plot.
 
 ## Demo
-
+https://twisttrl.github.io/react-plot-axis-panel
 
 ## Examples
 ```

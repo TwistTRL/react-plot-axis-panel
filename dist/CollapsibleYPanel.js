@@ -19,10 +19,6 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -39,7 +35,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-var PRIMARY_COLOR_CYCLE = ["#d2b4de", "#aed6f1", "#a9dfbf", "#f9e79f", "#f5cba7"];
 var SECONDARY_COLOR_CYCLE = ["#feefce", "#fffbe7"];
 
 var CollapsibleYPanel =
@@ -102,16 +97,12 @@ function (_PureComponent) {
 
         for (var i = 0; i < categoryStructure.length; i++) {
           var p = categoryStructure[i];
-          var newP = new _PrimaryCategoryObject.default(_objectSpread({}, p, {
-            backgroundColor: PRIMARY_COLOR_CYCLE[i % PRIMARY_COLOR_CYCLE.length]
-          }));
+          var newP = new _PrimaryCategoryObject.default(p);
           newP.children = [];
 
           for (var j = 0; j < p.children.length; j++) {
             var s = p.children[j];
-            var newS = new _SecondaryCategoryObject.default(_objectSpread({}, s, {
-              backgroundColor: SECONDARY_COLOR_CYCLE[j % SECONDARY_COLOR_CYCLE.length]
-            }));
+            var newS = new _SecondaryCategoryObject.default(s);
             newP.children.push(newS);
           }
 
@@ -142,6 +133,8 @@ function (_PureComponent) {
             var _s = _step.value;
 
             if (memo.useLeavesSet.has(_s.getName())) {
+              _s.setBackgroundColor(SECONDARY_COLOR_CYCLE[rowNum % SECONDARY_COLOR_CYCLE.length]);
+
               _s.draw(ctx, width, height, rowNum * rowHeight, (rowNum + 1) * rowHeight);
 
               rowNum += 1;

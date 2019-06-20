@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import PrimaryCategoryObject from "./PrimaryCategoryObject";
 import SecondaryCategoryObject from "./SecondaryCategoryObject";
 
-const PRIMARY_COLOR_CYCLE = ["#d2b4de","#aed6f1","#a9dfbf","#f9e79f","#f5cba7"];
 const SECONDARY_COLOR_CYCLE = ["#feefce","#fffbe7"];
 
 class CollapsibleYPanel extends PureComponent{
@@ -28,7 +27,7 @@ class CollapsibleYPanel extends PureComponent{
   }
 
   draw(){
-    let { categoryStructure, /* [{name,children:[...]}] */
+    let { categoryStructure, /* [{name,backgroundColor,children:[{name}]}] */
           useLeaves,
           rowHeight, width, height,
           } = this.props;
@@ -40,11 +39,11 @@ class CollapsibleYPanel extends PureComponent{
       memo.categoryStructureClone = [];
       for (let i=0; i<categoryStructure.length; i++){
         let p = categoryStructure[i];
-        let newP = new PrimaryCategoryObject({...p,backgroundColor:PRIMARY_COLOR_CYCLE[i%PRIMARY_COLOR_CYCLE.length]});
+        let newP = new PrimaryCategoryObject(p);
         newP.children = [];
         for (let j=0; j<p.children.length; j++) {
           let s = p.children[j];
-          let newS = new SecondaryCategoryObject({...s,backgroundColor:SECONDARY_COLOR_CYCLE[j%SECONDARY_COLOR_CYCLE.length]});
+          let newS = new SecondaryCategoryObject(s);
           newP.children.push(newS);
         }
         memo.categoryStructureClone.push(newP);
@@ -64,6 +63,7 @@ class CollapsibleYPanel extends PureComponent{
       let rowStart = rowNum;
       for (let s of p.children) {
         if (memo.useLeavesSet.has(s.getName())) {
+          s.setBackgroundColor(SECONDARY_COLOR_CYCLE[rowNum%SECONDARY_COLOR_CYCLE.length]);
           s.draw(ctx,width,height,rowNum*rowHeight,(rowNum+1)*rowHeight);
           rowNum+=1;
         }

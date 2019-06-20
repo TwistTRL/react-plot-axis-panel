@@ -4,7 +4,11 @@ import {getRotatedAxisCoordinate} from "plot-utils";
 const WIDTH = 40;
 
 class PrimaryCategoryObject {
-  constructor({name,from,to,backgroundColor}) {
+  /*
+   * Primary category objects are initialized with name, backgroundColor.
+   * They should remain unchanged over their life time.
+   */
+  constructor({name,backgroundColor}) {
     this._name = name;
     this._backgroundColor = backgroundColor;
   }
@@ -44,8 +48,12 @@ class PrimaryCategoryObject {
     ctx.fillStyle = this._backgroundColor;
     ctx.fillRect( 0,start,
                   plotWidth,plotHeight);
-    ctx.drawImage(bitmap,srcx,srcy,plotWidth,plotHeight,
-                  0,start,plotWidth,plotHeight);
+    try {
+      ctx.drawImage(bitmap,srcx,srcy,plotWidth,plotHeight,
+                    0,start,plotWidth,plotHeight);
+    } catch(error) {
+      // Mose likely, when string is empty, drawing a empty bitmap will cause InvalidStateError 
+    }
   }
 }
 

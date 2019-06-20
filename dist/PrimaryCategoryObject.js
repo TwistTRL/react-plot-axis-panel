@@ -22,12 +22,14 @@ var WIDTH = 40;
 var PrimaryCategoryObject =
 /*#__PURE__*/
 function () {
+  /*
+   * Primary category objects are initialized with name, backgroundColor.
+   * They should remain unchanged over their life time.
+   */
   function PrimaryCategoryObject(_ref) {
     var _this = this;
 
     var name = _ref.name,
-        from = _ref.from,
-        to = _ref.to,
         backgroundColor = _ref.backgroundColor;
 
     _classCallCheck(this, PrimaryCategoryObject);
@@ -77,7 +79,11 @@ function () {
       var srcy = Math.round(bitmap.height / 2 - plotHeight / 2);
       ctx.fillStyle = this._backgroundColor;
       ctx.fillRect(0, start, plotWidth, plotHeight);
-      ctx.drawImage(bitmap, srcx, srcy, plotWidth, plotHeight, 0, start, plotWidth, plotHeight);
+
+      try {
+        ctx.drawImage(bitmap, srcx, srcy, plotWidth, plotHeight, 0, start, plotWidth, plotHeight);
+      } catch (error) {// Mose likely, when string is empty, drawing a empty bitmap will cause InvalidStateError 
+      }
     }
   }]);
 

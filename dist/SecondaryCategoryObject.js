@@ -20,12 +20,15 @@ var OFFSETX = 40;
 var SecondaryCategoryObject =
 /*#__PURE__*/
 function () {
+  /*
+   * Secondary category objects are initialized with name.
+   * They should remain unchanged over their life time.
+   * The backgroundColor may change, hence, the bg color can/need to be supplied before drawing.
+   */
   function SecondaryCategoryObject(_ref) {
     var _this = this;
 
     var name = _ref.name,
-        from = _ref.from,
-        to = _ref.to,
         backgroundColor = _ref.backgroundColor;
 
     _classCallCheck(this, SecondaryCategoryObject);
@@ -57,6 +60,11 @@ function () {
     key: "getName",
     value: function getName() {
       return this._name;
+    }
+  }, {
+    key: "setBackgroundColor",
+    value: function setBackgroundColor(color) {
+      this._backgroundColor = color;
     }
   }, {
     key: "draw",

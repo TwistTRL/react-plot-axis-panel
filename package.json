@@ -2,8 +2,8 @@
   "name": "react-plot-axis-panel",
   "version": "0.1.0",
   "dependencies": {
-    "memoize": "github:zhoulytwinyu/memoize",
-    "plot-utils": "github:zhoulytwinyu/plot-utils"
+    "memoize": "github:zhoulytwinyu/memoize#v0.1.0",
+    "plot-utils": "github:zhoulytwinyu/plot-utils#v0.1.0"
   },
   "peerDependencies": {
     "prop-types": "^15.7.2",
