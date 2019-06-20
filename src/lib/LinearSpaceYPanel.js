@@ -59,7 +59,6 @@ class LinearSpaceYPanel extends PureComponent{
     let canvas = this.ref.current;
     let ctx = canvas.getContext("2d");
     ctx.clearRect(0,0,width,height);
-    let rowNum = 0;
     for (let p of memo.categoryStructureClone) {
       for (let s of p.children) {
         if (s.end<minY || s.start>maxY) {
@@ -69,7 +68,6 @@ class LinearSpaceYPanel extends PureComponent{
           let startDomX = Math.round( toDomYCoord_Linear(height,minY,maxY,s.end) );
           let endDomX = Math.round( toDomYCoord_Linear(height,minY,maxY,s.start) );
           s.draw(ctx,width,height,startDomX,endDomX);
-          rowNum+=1;
         }
       }
       //
