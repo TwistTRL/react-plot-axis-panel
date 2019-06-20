@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/react-plot-axis-panel/static/css/main.9d313dd0.chunk.css",
-    "main.js": "/react-plot-axis-panel/static/js/main.951babd1.chunk.js",
-    "main.js.map": "/react-plot-axis-panel/static/js/main.951babd1.chunk.js.map",
+    "main.js": "/react-plot-axis-panel/static/js/main.f93c28c8.chunk.js",
+    "main.js.map": "/react-plot-axis-panel/static/js/main.f93c28c8.chunk.js.map",
     "runtime~main.js": "/react-plot-axis-panel/static/js/runtime~main.63acfe64.js",
     "runtime~main.js.map": "/react-plot-axis-panel/static/js/runtime~main.63acfe64.js.map",
     "static/js/2.01a52a36.chunk.js": "/react-plot-axis-panel/static/js/2.01a52a36.chunk.js",
     "static/js/2.01a52a36.chunk.js.map": "/react-plot-axis-panel/static/js/2.01a52a36.chunk.js.map",
     "index.html": "/react-plot-axis-panel/index.html",
-    "precache-manifest.7f7a9e20ed842f14a77b8e16e3d327e8.js": "/react-plot-axis-panel/precache-manifest.7f7a9e20ed842f14a77b8e16e3d327e8.js",
+    "precache-manifest.269a5e1d4392f491a8a645a06387377b.js": "/react-plot-axis-panel/precache-manifest.269a5e1d4392f491a8a645a06387377b.js",
     "service-worker.js": "/react-plot-axis-panel/service-worker.js",
     "static/css/main.9d313dd0.chunk.css.map": "/react-plot-axis-panel/static/css/main.9d313dd0.chunk.css.map"
   }
